@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         boolean gameOver = false;
         Board board = new Board();
-        player1 = getPlayerFromKeyboard();
+        player1 = new Player("", true); // getPlayerFromKeyboard();
         player2 = new Player("", true);
         currentPlayer = getRandomPlayer(player1, player2);
         while (!gameOver) {
