@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class Main {
     static Scanner input = new Scanner(System.in);
+    static Player player1, player2, currentPlayer;
+
     public static void main(String[] args) {
         boolean gameOver = false;
-        Player player1, player2, currentPlayer;
         Board board = new Board();
         player1 = getPlayerFromKeyboard();
         player2 = new Player("", true);
@@ -54,7 +55,7 @@ public class Main {
 
     }
 
-    private static Player changePlayer(Player current, Player player1, Player player2) {
+    public static Player changePlayer(Player current, Player player1, Player player2) {
         return current == player1 ? player2 : player1;
     }
 
