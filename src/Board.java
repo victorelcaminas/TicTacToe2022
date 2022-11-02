@@ -124,4 +124,25 @@ public class Board {
     }
 
 
+    public Shot shootAI(Player currentPlayer) {
+        Shot shot = rule1(currentPlayer);
+        if (shot.isValid()) {
+            return shot;
+        }
+        shot = rule2(currentPlayer);
+        if (shot.isValid()) {
+            return shot;
+        }
+        shot = rule3(currentPlayer);
+        if (shot.isValid()) {
+            return shot;
+        }
+        shot = rule4(currentPlayer);
+        return shot;
+    }
+
+    private Shot rule1(Player currentPlayer) {
+
+    }
+
 }

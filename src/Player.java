@@ -1,10 +1,12 @@
 public class Player {
     private String name;
     private String symbol;
+    private boolean isAI;
     private static int numPlayers = 0;
 
-    public Player(String name) {
-        this.name = name;
+    public Player(String name, boolean isAI) {
+        this.isAI = isAI;
+        this.name = isAI ? "AI" : name;
         if (numPlayers == 0) {
             symbol = "O";
         } else {
@@ -13,6 +15,9 @@ public class Player {
         numPlayers ++;
     }
 
+    public boolean isAI() {
+        return isAI;
+    }
     public String getName() {
         return name;
     }

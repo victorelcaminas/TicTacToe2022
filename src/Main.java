@@ -7,11 +7,11 @@ public class Main {
         Player player1, player2, currentPlayer;
         Board board = new Board();
         player1 = getPlayerFromKeyboard();
-        player2 = getPlayerFromKeyboard();
+        player2 = new Player("", true);
         currentPlayer = getRandomPlayer(player1, player2);
         while (!gameOver) {
             System.out.println(board);
-            Shot shot = getShot(currentPlayer);
+            Shot shot = getShot(currentPlayer, board);
             if (board.correctShoot(shot, currentPlayer)) {
                 if (board.wins()) {
                     System.out.println(board);
@@ -30,7 +30,11 @@ public class Main {
         }
     }
 
-    public static Shot getShot(Player currentPlayer) {
+    public static Shot shootAI(Player currentPlayer, Board board) {
+        return board.shootAI(currentPlayer);
+    }
+
+    public static Shot getHumanShot(Player currentPlayer) {
         System.out.println(currentPlayer.getName() +
                 "(" + currentPlayer.getSymbol() + ")" +
                 " Enter row and col:");
@@ -39,6 +43,15 @@ public class Main {
         System.out.print("Column:");
         int col = input.nextInt() - 1;
         return new Shot(row, col);
+    }
+
+    public static Shot getShot(Player currentPlayer, Board board) {
+        if (currentPlayer.isAI()) {
+            return shootAI(currentPlayer, board);
+        } else {
+            return getHumanShot(currentPlayer);
+        }
+
     }
 
     private static Player changePlayer(Player current, Player player1, Player player2) {
@@ -53,6 +66,6 @@ public class Main {
     private static Player getPlayerFromKeyboard() {
         System.out.println("Enter the name of player " + (Player.getNumPlayers() == 0 ? "1" : "2"));
         String name = input.next();
-        return new Player(name);
+        return new Player(name, false);
     }
 }
